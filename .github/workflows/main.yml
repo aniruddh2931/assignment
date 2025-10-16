@@ -25,8 +25,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./backend
-          file: ./backend/Dockerfile
+          context: C:\Users\aniru\OneDrive\Desktop\fusionpact-devops-gauntlet\backend
+          file: ./Dockerfile
           push: true
           tags: ani2931/fusionpact-backend:latest
 
