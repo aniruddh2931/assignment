@@ -1,19 +1,5 @@
-<<<<<<< HEAD
-version: '3'
-services:
-  frontend:
-    build: ./frontend
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
+version: '3.9'
 
-  backend:
-    build: ./backend
-    ports:
-      - "8000:8000"
-=======
-version: "3"
 services:
   backend:
     build: ./backend
@@ -26,8 +12,6 @@ services:
     container_name: frontend
     ports:
       - "80:80"
-    depends_on:
-      - backend
 
   prometheus:
     image: prom/prometheus
@@ -38,14 +22,9 @@ services:
       - "9090:9090"
     depends_on:
       - backend
+      - frontend
+      - cadvisor
 
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    depends_on:
-      - prometheus
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
@@ -53,8 +32,7 @@ services:
       - "8080:8080"
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:rw
+      - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     restart: always
->>>>>>> 3ced24421293d474be671bb6231574ac8e43e7fc
