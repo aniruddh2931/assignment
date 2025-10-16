@@ -19,15 +19,15 @@ jobs:
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.ANI2931 }}
-        password: ${{ secrets.ANIRUDDH2931 }}
+        username: ${{ secrets.ani2931 }}
+        password: ${{ secrets.dckr_pat_a-eIMwfyS1yMK7MNlvskTly3n0I }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v6
       with:
         context: .
         push: true
-        tags: ${{ secrets.ANI2931 }}/fusionpact-backend:latest
+        tags: ${{ secrets.ani2931 }}/fusionpact-backend:latest
 
     - name: Deploy on EC2
       uses: appleboy/ssh-action@v1.0.3
@@ -38,5 +38,5 @@ jobs:
         script: |
           cd /home/ubuntu/fusionpact-devops-gauntlet
           sudo docker-compose down
-          sudo docker pull ${{ secrets.ANI2931 }}/fusionpact-backend:latest
+          sudo docker pull ${{ secrets.ani2931 }}/fusionpact-backend:latest
           sudo docker-compose up -d
