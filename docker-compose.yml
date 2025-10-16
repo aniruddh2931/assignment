@@ -6,6 +6,8 @@ services:
     container_name: backend
     ports:
       - "8000:8000"
+    volumes:
+      - backend_data:/app/data   # Persist backend data if any
 
   frontend:
     build: ./frontend
@@ -14,16 +16,26 @@ services:
       - "80:80"
 
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:latest
     container_name: prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Config file
+      - prometheus_data:/prometheus                     # Persist Prometheus metrics
     depends_on:
       - backend
-      - frontend
       - cadvisor
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana   # Persist dashboards & settings
+    depends_on:
+      - prometheus
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
@@ -36,3 +48,8 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     restart: always
+
+volumes:
+  backend_data:
+  prometheus_data:
+  grafana_data:
