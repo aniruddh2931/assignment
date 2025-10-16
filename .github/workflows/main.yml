@@ -25,6 +25,9 @@ jobs:
         username: ${{ secrets.ani2931 }}
         password: ${{ secrets.aniruddh2931 }}
 
+    - name: Verify Docker login
+       run: docker info
+
     # 4️⃣ Build and push Docker image
     - name: Build and push Docker image
       uses: docker/build-push-action@v6
