@@ -31,40 +31,25 @@ jobs:
           tags: ani2931/fusionpact-backend:latest
 
       - name: Deploy on EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: 43.205.211.182
-          username: ubuntu
-          key: |
-            -----BEGIN RSA PRIVATE KEY-----
-            MIIEowIBAAKCAQEAqDH1e0GPuZ3MS33HoUtN6AJ1oOyikpxF23qV8wRseODo/yI7
-            XU5+udtjP7iI+Npsf5h3MG54n6joR/Kqwnw+gHTXMwOaJAr5K0tR1fstCtzj1M3O
-            ny5QUupOKveLRGmBqv1W/4TbLBz+2epBbWYDT8Zkk7Y9MbZ/rPRX210Z+Ek1xlu8
-            XieVEj/uPqsfyQFGJzjW6I1ATv5tpTUx8wlNpmx6KQ6rujGYeWFyXpl5BT1o9tBH
-            VHySX4XIV6g0nLKcrV3jKdwtcBBU5XUy2OhIun7+DSzR/0sCTNPBV0d8O2Mhvh3Y
-            4iJ4kGCoSzQSJjpYqAZeW076VRx+REQhHm5R/wIDAQABAoIBAGSDfp1LH9YgTB9t
-            KmjktMkK9zrVT45oH4M7LfNN2Hkgh304+tsW9rqhNh21bP2yopZaChiCXEmlyjJ8
-            /bk+QKfJq3VMGMijWiaaW2ySL2fHe8wHtgwAxHXYmiApUSvwFVKXFW+b+NLS/SZD
-            TRhQl3gMKrzvcoCL/J7iYsKwT73FInfSt07Nn8ApJv4L8mkKAyF+7jqku1Y7A5rN
-            iUdUmPEFpNiRUm9aSrCyZ81JozxBncGnkxf+/S0Dl+LmVoIH+ps6cmL7zYxvhS0l
-            IAO0PLEPbp1mLA4hTKU6iWXuB+JZJpsfXOkignXGoBRLhQwPVi7RjnH5kshDDtWB
-            vckj/6kCgYEA0rt2uSjY5C6xp2UG9p6VBheZSN1PfZlm1enJn+re3g8tJV2rFwqt
-            YKhcplwlhy95/CdJ0jKrL67bCr7vCAlfF1gX0UIWnaUIHlgjxRYlxGz1ZgV1uimB
-            tACdtZ+d21HtBmx8hNTQKsj8p4t2ts8gvq8Jc/gWN+m13geLEzyR1QUCgYEAzFNN
-            3ONfmorMR89JtNmGZsXpTQWozTUGQyvYn78JayRYiw1ajc+3gLKtCQkuvWgnluj+
-            36cigG/9hNMFPHGOR4KQfWurYuLZtyBLcLkQi90VZ3IhRlVbG/1fss48mGR6IirS
-            0Mio7xwQL97qJG4mzAVsBuVmyL917VgPolUS+jMCgYEAtxHQlA6eTa0a/NdRc1JV
-            GFPMAHbypaRsqA1P8bNzJep9R+bVyVCnSj85LfUDTSu7h4kCIq+N9ACtneo9cffi
-            Oj93gX0udIl4QhREDuWsrbYSgizgF3gTi7K1T6F4252SknAQxLy0k1bD1zHbUfki
-            80TQq4SsmKpaKqbW9UE7V5kCgYAZyJFUxGR2DfnFPgUhCyoIogTUsVghvQUzSL8n
-            OWYo3QdHVMIOjx2q4eEv+LarNA963Z/7/Q0/g+JL9oz8mZ/IqlMtYH7aFaI/l5Wt
-            fcz2uUlQKnjEdVTv7UM8PwYqfNNkqF699fRLaBEq2UhWnIfMywpcvGoB/xcUgj5G
-            z9F7PQKBgAfw6WqqRk8YJOMo9j58KGtAGEaR1ZwE+d2BmlK3uOUOZSJezhc0RUA5
-            5od5BUFdyVIYtasCgU3/G/idARcbUIAUx6H/DFBQiiIklhiGTbDMIMg2EL9JrbzF
-            rMBRYp+KDuzFF97pf2KvRwQynzoT4HDX5/wqPfhXf3uOjxJMdcGw
-            -----END RSA PRIVATE KEY-----
-          script: |
-            cd /home/ubuntu/fusionpact-devops-gauntlet
-            sudo docker-compose down
+         uses: appleboy/ssh-action@v1.0.3
+         with:
+           host: 43.205.211.182         # Your EC2 public IP
+           username: ubuntu             # Default user for Ubuntu AMI
+           key: |
+             -----BEGIN RSA PRIVATE KEY-----
+             MIIEowIBAAKCAQEAqDH1e0GPuZ3MS33HoUtN6AJ1oOyikpxF23qV8wRseODo/yI7
+             XU5+udtjP7iI+Npsf5h3MG54n6joR/Kqwnw+gHTXMwOaJAr5K0tR1fstCtzj1M3O
+             ny5QUupOKveLRGmBqv1W/4TbLBz+2epBbWYDT8Zkk7Y9MbZ/rPRX210Z+Ek1xlu8
+             XieVEj/uPqsfyQFGJzjW6I1ATv5tpTUx8wlNpmx6KQ6rujGYeWFyXpl5BT1o9tBH
+             VHySX4XIV6g0nLKcrV3jKdwtcBBU5XUy2OhIun7+DSzR/0sCTNPBV0d8O2Mhvh3Y
+             4iJ4kGCoSzQSJjpYqAZeW076VRx+REQhHm5R/wIDAQABAoIBAGSDfp1LH9YgTB9t
+             ...
+             -----END RSA PRIVATE KEY-----
+           script: |
+             cd /home/ubuntu/fusionpact-devops-gauntlet
+             sudo docker-compose down
+             sudo docker pull ani2931/fusionpact-backend:latest
+             sudo docker-compose up -d
+
             sudo docker pull ani2931/fusionpact-backend:latest
             sudo docker-compose up -d
